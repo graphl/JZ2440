@@ -1,0 +1,64 @@
+
+led_on.elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	e3a0da01 	mov	sp, #4096	; 0x1000
+   4:	e3a00004 	mov	r0, #4	; 0x4
+   8:	eb000002 	bl	18 <led_on>
+   c:	e3a00005 	mov	r0, #5	; 0x5
+  10:	eb000000 	bl	18 <led_on>
+
+00000014 <halt>:
+  14:	eafffffe 	b	14 <halt>
+
+00000018 <led_on>:
+  18:	e1a0c00d 	mov	ip, sp
+  1c:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
+  20:	e24cb004 	sub	fp, ip, #4	; 0x4
+  24:	e24dd010 	sub	sp, sp, #16	; 0x10
+  28:	e50b0010 	str	r0, [fp, #-16]
+  2c:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  30:	e2833050 	add	r3, r3, #80	; 0x50
+  34:	e50b3014 	str	r3, [fp, #-20]
+  38:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  3c:	e2833054 	add	r3, r3, #84	; 0x54
+  40:	e50b3018 	str	r3, [fp, #-24]
+  44:	e51b3010 	ldr	r3, [fp, #-16]
+  48:	e50b301c 	str	r3, [fp, #-28]
+  4c:	e51b301c 	ldr	r3, [fp, #-28]
+  50:	e3530004 	cmp	r3, #4	; 0x4
+  54:	0a000003 	beq	68 <led_on+0x50>
+  58:	e51b301c 	ldr	r3, [fp, #-28]
+  5c:	e3530005 	cmp	r3, #5	; 0x5
+  60:	0a000007 	beq	84 <led_on+0x6c>
+  64:	ea00000f 	b	a8 <led_on+0x90>
+  68:	e51b2014 	ldr	r2, [fp, #-20]
+  6c:	e3a03c01 	mov	r3, #256	; 0x100
+  70:	e5823000 	str	r3, [r2]
+  74:	e51b2018 	ldr	r2, [fp, #-24]
+  78:	e3a03000 	mov	r3, #0	; 0x0
+  7c:	e5823000 	str	r3, [r2]
+  80:	ea000008 	b	a8 <led_on+0x90>
+  84:	e51b2014 	ldr	r2, [fp, #-20]
+  88:	e3a03b01 	mov	r3, #1024	; 0x400
+  8c:	e5823000 	str	r3, [r2]
+  90:	e51b2018 	ldr	r2, [fp, #-24]
+  94:	e3a03000 	mov	r3, #0	; 0x0
+  98:	e5823000 	str	r3, [r2]
+  9c:	e51b2018 	ldr	r2, [fp, #-24]
+  a0:	e3a03000 	mov	r3, #0	; 0x0
+  a4:	e5823000 	str	r3, [r2]
+  a8:	e1a00003 	mov	r0, r3
+  ac:	e24bd00c 	sub	sp, fp, #12	; 0xc
+  b0:	e89da800 	ldmia	sp, {fp, sp, pc}
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	43434700 	cmpmi	r3, #0	; 0x0
+   4:	4728203a 	undefined
+   8:	2029554e 	eorcs	r5, r9, lr, asr #10
+   c:	2e342e33 	mrccs	14, 1, r2, cr4, cr3, {1}
+  10:	Address 0x10 is out of bounds.
+

@@ -1,0 +1,73 @@
+
+led_on.elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	e3a00453 	mov	r0, #1392508928	; 0x53000000
+   4:	e3a01000 	mov	r1, #0	; 0x0
+   8:	e5801000 	str	r1, [r0]
+   c:	e3a01000 	mov	r1, #0	; 0x0
+  10:	e5910000 	ldr	r0, [r1]
+  14:	e5811000 	str	r1, [r1]
+  18:	e5912000 	ldr	r2, [r1]
+  1c:	e1510002 	cmp	r1, r2
+  20:	e59fd00c 	ldr	sp, [pc, #12]	; 34 <.text+0x34>
+  24:	03a0da01 	moveq	sp, #4096	; 0x1000
+  28:	05810000 	streq	r0, [r1]
+  2c:	eb00000d 	bl	68 <main>
+
+00000030 <halt>:
+  30:	eafffffe 	b	30 <halt>
+  34:	40001000 	andmi	r1, r0, r0
+
+00000038 <delay>:
+  38:	e1a0c00d 	mov	ip, sp
+  3c:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
+  40:	e24cb004 	sub	fp, ip, #4	; 0x4
+  44:	e24dd004 	sub	sp, sp, #4	; 0x4
+  48:	e50b0010 	str	r0, [fp, #-16]
+  4c:	e51b3010 	ldr	r3, [fp, #-16]
+  50:	e2433001 	sub	r3, r3, #1	; 0x1
+  54:	e50b3010 	str	r3, [fp, #-16]
+  58:	e3730001 	cmn	r3, #1	; 0x1
+  5c:	0a000000 	beq	64 <delay+0x2c>
+  60:	eafffff9 	b	4c <delay+0x14>
+  64:	e89da808 	ldmia	sp, {r3, fp, sp, pc}
+
+00000068 <main>:
+  68:	e1a0c00d 	mov	ip, sp
+  6c:	e92dd800 	stmdb	sp!, {fp, ip, lr, pc}
+  70:	e24cb004 	sub	fp, ip, #4	; 0x4
+  74:	e24dd00c 	sub	sp, sp, #12	; 0xc
+  78:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  7c:	e2833050 	add	r3, r3, #80	; 0x50
+  80:	e50b3010 	str	r3, [fp, #-16]
+  84:	e3a03456 	mov	r3, #1442840576	; 0x56000000
+  88:	e2833054 	add	r3, r3, #84	; 0x54
+  8c:	e50b3014 	str	r3, [fp, #-20]
+  90:	e3a03000 	mov	r3, #0	; 0x0
+  94:	e50b3018 	str	r3, [fp, #-24]
+  98:	e51b2010 	ldr	r2, [fp, #-16]
+  9c:	e51b3010 	ldr	r3, [fp, #-16]
+  a0:	e5933000 	ldr	r3, [r3]
+  a4:	e3c33c3f 	bic	r3, r3, #16128	; 0x3f00
+  a8:	e5823000 	str	r3, [r2]
+  ac:	e51b2010 	ldr	r2, [fp, #-16]
+  b0:	e51b3010 	ldr	r3, [fp, #-16]
+  b4:	e5933000 	ldr	r3, [r3]
+  b8:	e3833c15 	orr	r3, r3, #5376	; 0x1500
+  bc:	e5823000 	str	r3, [r2]
+  c0:	e51b2014 	ldr	r2, [fp, #-20]
+  c4:	e3a03000 	mov	r3, #0	; 0x0
+  c8:	e5823000 	str	r3, [r2]
+  cc:	eafffffb 	b	c0 <main+0x58>
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	43434700 	cmpmi	r3, #0	; 0x0
+   4:	4728203a 	undefined
+   8:	2029554e 	eorcs	r5, r9, lr, asr #10
+   c:	2e342e33 	mrccs	14, 1, r2, cr4, cr3, {1}
+  10:	Address 0x10 is out of bounds.
+
